@@ -1,7 +1,7 @@
 name: muestreo-station-status
 on:
   schedule:
-    - cron: "*/10 * * * *"   # cada 10 min (UTC). GitHub puede retrasar o saltarse algunas corridas
+  - cron: "*/5 * * * *"   # cada 10 min (UTC). GitHub puede retrasar o saltarse algunas corridas
   workflow_dispatch: {}       # boton "Run workflow" para probar ahora
 permissions:
   contents: write
@@ -22,4 +22,6 @@ jobs:
           git config user.email "muestreador@users.noreply.github.com"
           git add data
           git commit -m "foto $(date -u +%FT%TZ)" || exit 0
-          git pull --rebase -q && git push
+          git pull --rebase origin main
+          git push origin main
+
